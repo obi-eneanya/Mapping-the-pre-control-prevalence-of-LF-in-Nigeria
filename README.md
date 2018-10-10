@@ -533,3 +533,36 @@ ggvalidate <- function(observed, predicted, CI, type, alpha = 1) {
   }
 }
 
+
+#Plotting Observed vs Predicted with upper and lower prediction limits. 
+
+#Observed values for ICT
+
+obs.ICT <- ICT_NG[,3]
+
+#Predicted mean values for ICT
+pred.ICT <- Predict.ICT.output[,6]
+
+#Binding Pred and Obs ICT to have same lenght 
+Obs.Pred.ICT <- cbind(pred.ICT, obs.ICT) #extracting Obs ICT<->Pred ICT
+
+#Looks like Pred and Obs ICT now have same lenght. 
+#Now re-run the above commands to extract back the values.
+obs.ICT <- Obs.Pred.ICT[,2]
+
+
+#Predicted lower and upper bounds
+pred025 <- Predict.ICT.output[,3]
+pred975 <- Predict.ICT.output[,5]
+
+ICT.CI <- as.data.frame(cbind(pred025, pred975))
+
+
+install.packages(c("ggplot2", "ggpubr", "ggsci"))
+library(ggplot2)
+source("ggvalidate.R")
+
+ggvalidate(observed = obs.ICT, predicted = pred.ICT, CI = cbind(pred025, pred975), type = 1, alpha = 1)
+
+ggvalidate(observed = obs.ICT, predicted = pred.ICT, CI = cbind(pred025, pred975), type = 2, alpha = 1)
+
