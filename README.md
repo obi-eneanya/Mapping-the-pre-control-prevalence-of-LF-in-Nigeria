@@ -7,7 +7,7 @@
 ## Place: London, UK
 ## Project: Modelling LF prevalence in Nigeria using Quantile Regression Forest
 
-## Section 1: Set up a function to install and load multiple R packages.
+# Section 1: Set up a function to install and load multiple R packages.
 # Check to see if packages are installed. Install them if they are not, then load them into the R session.
 
 ipak <- function(pkg){
@@ -49,8 +49,8 @@ hist(ICT_NG$Prevalence)
 points(ICT_NG$Longitude, ICT_NG$Latitude, pch=21, cex = 0.8, col="red") 
 points(Mf_NG$Longitude, Mf_NG$Latitude, pch=21, cex = 0.8, col="red") 
 
-## 1.3 - Apply empirical logit transformation on prevalence data: spread the distribution to get
-## a quasi continuous distribution
+# 1.3 - Apply empirical logit transformation on prevalence data: spread the distribution to get
+# a quasi continuous distribution
 
 ICT_NG$LogPrev <- log((ICT_NG$Positive + 0.5)/(ICT_NG$Examined - ICT_NG$Positive + 0.5))
 
@@ -107,7 +107,7 @@ plot(ICT.RF.v00)
 varImpPlot(ICT.RF.v00, type = 1)
 
 
-## 2.4 - Tune up parameters for the random Forest model
+# 2.4 - Tune up parameters for the random Forest model
 
 ctrl <- trainControl(method = "repeatedcv",
                      number = 10, repeats = 5) # 10-fold CV repeated 5 times
@@ -382,7 +382,7 @@ setwd("./ICT_models")
 
 writeRaster(Prediction.ICT, format = "GTiff", bylayer = T, names(Prediction.ICT), overwrite = T)
 
-## Save workspace with objects created
+# Save workspace with objects created
 gc()
 save.image(paste0(path_wd, sep = "/","Nigeria_LF_modelling.RData"))
 
@@ -403,7 +403,7 @@ Predict.Mf.output <- as.data.frame(cbind(ICT_pred_cov[,c(1,2)], Predict.Mf.v01, 
 colnames(Predict.Mf.output) <- c("x","y","LB","Median","UB","Mean")
 names(Predict.Mf.output)
 
-# 4.2.2 - Tranform back the predicted values (divide by 100 to estimate prevalence rate)
+# 4.2.2 - Transform back the predicted values (divide by 100 to estimate prevalence rate)
 
 Predict.Mf.output[,3:6] <- (psych::logistic(Predict.Mf.output[,3:6]))*100
 
@@ -427,7 +427,7 @@ Predicted.Mf.Median <- raster(Predicted.Mf.Median) # coerce to raster
 
 plot(Predicted.Mf.Median)
 
-# 4.2.5 - Generate rater for UP
+# 4.2.5 - Generate raster for UP
 
 Predicted.Mf.UB <- Predict.Mf.output[,c(1,2,5)]
 coordinates(Predicted.Mf.UB) <- ~ x + y # create spatial points data frame
@@ -437,7 +437,7 @@ Predicted.Mf.UB <- raster(Predicted.Mf.UB) # coerce to raster
 
 plot(Predicted.Mf.UB)
 
-# 4.3.6 - Generate rater for mean
+# 4.3.6 - Generate raster for mean
 
 Predicted.Mf.Mean <- Predict.Mf.output[,c(1,2,6)]
 coordinates(Predicted.Mf.Mean) <- ~ x + y # create spatial points data frame
@@ -463,7 +463,7 @@ plot(Prediction.Mf)
 
 Prediction.Mf <- projectRaster(Prediction.Mf, crs = PCS)
 
-## 4.2.8 - Export raster datasets as outputs
+# 4.2.8 - Export raster datasets as outputs
 
 setwd(path_outputs)
 dir.create("Mf_models")
@@ -471,7 +471,7 @@ setwd("./Mf_models")
 
 writeRaster(Prediction.Mf, format = "GTiff", bylayer = T, names(Prediction.Mf), overwrite = T)
 
-## Save workspace with objects created
+# Save workspace with objects created
 gc()
 save.image(paste0(path_wd, sep = "/","Nigeria_LF_modelling.RData"))
 
