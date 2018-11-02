@@ -34,13 +34,13 @@ Nigeria.ADM1 <- subset(Africa_ADM1, Africa_ADM1$ADM0_NAME == "Nigeria")
 plot(Nigeria.ADM0)
 plot(Nigeria.ADM1)
 
-# 1.2 - Load dataset and plot survye locations over shapefile
+# 1.2 - Load dataset and plot survey locations over shapefile
 # Read in complete LF dataset which includes ICT and Mf prevalences 
 
 ICT_NG <- read.csv("LF_NG_Complete.csv")
 names(ICT_NG)
 
-# Covert Diagnostic.Type to Factor
+# Convert Diagnostic.Type to Factor
 ICT_NG$Diagnostic.Type <- as.factor(ICT_NG$Diagnostic.Type)
 
 summary(ICT_NG$Prevalence)
@@ -131,20 +131,7 @@ system.time(m_rf <- train(LogPrev ~ .,
 # 1103 samples
 # 17 predictor
 
-# No pre-processing
 # Resampling: Cross-Validated (10 fold, repeated 5 times) 
-# Summary of sample sizes: 993, 994, 993, 991, 992, 993, ... 
-# Resampling results across tuning parameters:
-
-# mtry  RMSE      Rsquared   MAE      
-# 3    1.200980  0.4142982  0.9369524
-# 5    1.196854  0.4167875  0.9304566***
-# 7    1.197480  0.4153966  0.9285400
-# 9    1.199202  0.4132903  0.9296433
-# 12   1.200143  0.4119367  0.9285512
-# 15   1.202211  0.4098565  0.9299522
-# 17   1.201592  0.4103760  0.9283960
-
 # RMSE was used to select the optimal model using the smallest value.
 # The final value used for the model was mtry = 5.
 
@@ -478,9 +465,9 @@ save.image(paste0(path_wd, sep = "/","Nigeria_LF_modelling.RData"))
 
 # Section 5 - Finding correlations between ICT Obs and Predicted
 
-# 5.1 Rasterise the ICT_NG and Mf_NG dataframes, retaining only Long/Lat, Prevalence and LogPrev colums
+# 5.1 Rasterise the ICT_NG and Mf_NG dataframes, retaining only Long/Lat, Prevalence and LogPrev columns
 
-# For ICT ~ this preojects ICT and Mf data as spDataframe
+# For ICT ~ this projects ICT and Mf data as spDataframe
 
 ICT.cor <- ICT_NG[,1:3]
 LF.sp.ICT <- SpatialPoints(ICT.cor[,c('Longitude', 'Latitude')], proj4string = CRS("+proj=longlat +datum=WGS84"))
