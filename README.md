@@ -3,9 +3,9 @@
 # ~~~~~~~~ Modelling LF prevalence in Nigeria using a machine learning approach ~~~~~~~~~~~~~ #
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
-## Date: 07.2018
-## Place: London, UK
-## Project: Modelling LF prevalence in Nigeria using Quantile Regression Forest
+# Date: 07.2018
+# Place: London, UK
+# Project: Modelling LF prevalence in Nigeria using Quantile Regression Forest
 
 # Section 1: Set up a function to install and load multiple R packages.
 # Check to see if packages are installed. Install them if they are not, then load them into the R session.
