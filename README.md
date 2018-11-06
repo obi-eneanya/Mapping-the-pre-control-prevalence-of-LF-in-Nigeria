@@ -291,7 +291,7 @@ set.seed(123)
 system.time(Predict.ICT.mean <- predict(QRF.NG.ICT.v01, newdata = ICT_pred_cov,
                                         what = mean))
 
-## 4.1.2 - Generate the predicted continuous surface for LB, median and UB
+# 4.1.2 - Generate the predicted continuous surface for LB, median and UB
 
 Predict.ICT.output <- as.data.frame(cbind(ICT_pred_cov[,c(1,2)], Predict.ICT.v01, Predict.ICT.mean))
 colnames(Predict.ICT.output) <- c("x","y","LB","Median","UB","Mean")
@@ -361,7 +361,7 @@ Prediction.ICT <- projectRaster(Prediction.ICT, crs = PCS)
 
 plot(Prediction.ICT)
 
-## 4.1.9 - Export raster datasets as outputs
+# 4.1.9 - Export raster datasets as outputs
 
 setwd(path_outputs)
 dir.create("ICT_models")
